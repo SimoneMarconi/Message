@@ -1,0 +1,14 @@
+.app-container {
+  display: flex;
+  flex-direction: column;
+  /* align-items: center; */
+  background-color: #d9eaff;
+  height: 100%;
+  padding-top: 20px;
+}
+
+.app-main {
+  position: relative;
+  width: 90%;
+  max-width: 500px;
+}

@@ -1,0 +1,22 @@
+.add-button {
+  position: relative;
+  bottom: 10px;
+  left: 10px;
+  background-color: white;
+  border: none;
+  color: black;
+  border-radius: 10px;
+  font-size: 24px;
+  width: 40px;
+  height: 40px;
+  cursor: pointer;
+  transition: all 0.3s ease 0s;
+}
+
+.add-button:hover {
+  box-shadow: 0 5px 8px rgba(4, 0, 0, 0.3);
+  transition: all 0.3s ease 0s;
+  border:solid;
+  border-width: 0.1px;
+  border-color: rgba(0,0,0,1);
+}

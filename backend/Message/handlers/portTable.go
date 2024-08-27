@@ -38,7 +38,7 @@ func (t PortTable) GetAll() []Port{
 }
 
 func (t PortTable) GetAllNumbers() []int{
-    var res []int
+    res := []int{}
     for _, val := range t{
         res = append(res, val.Number)
     }

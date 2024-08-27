@@ -6,6 +6,7 @@ import (
 	"log"
 	"message/handlers"
 
+	"github.com/gin-contrib/cors"
 	"github.com/gin-gonic/gin"
 )
 
@@ -24,6 +25,9 @@ func main(){
     table := make(handlers.PortTable)
 
     router := gin.Default()
+    config := cors.DefaultConfig()
+    config.AllowAllOrigins = true
+    router.Use(cors.New(config))
     router.Use(func(c *gin.Context) {
         ctx := context.WithValue(c.Request.Context(), contextKey("portTable"), table)
         c.Request = c.Request.WithContext(ctx)

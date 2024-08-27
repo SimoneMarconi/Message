@@ -1,6 +1,7 @@
 package main
 
 import (
+	"bufio"
 	"log"
 	"net"
 	"os"
@@ -18,14 +19,17 @@ func main() {
         log.Panic(err)
     }
     // var msg []byte
-    msg := make([]byte, 256)
+    // msg := make([]byte, 256)
     for {
-        n, _:= conn.Read(msg)
+        reader := bufio.NewReader(conn)
+        line, _, _ := reader.ReadLine()
+        log.Println(string(line))
+        // n, _:= conn.Read(msg)
         // if err != nil {
         //     log.Panic(err)
         // }
-        if n != 0 {
-            log.Println(string(msg))
-        }
+        // if n != 0 {
+        //     log.Println(string(msg))
+        // }
     }
 }

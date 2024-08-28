@@ -3,14 +3,17 @@ package handlers
 import (
 	"log"
 	"net"
+
+	"github.com/gin-gonic/gin"
 )
 
-func HandleConnection(port Port, msg string){
+func HandleConnection(port *Port, msg string){
     data := []byte(msg)
     var conn net.Conn
     if port.Connection == nil{
-        log.Println("waiting")
-        // conn = <-port.Channel
+        log.Println("waiting on port ", port.Number)
+        <-port.Channel
+        conn = port.Connection
     }else {
         conn = port.Connection
         log.Println(conn)
@@ -23,5 +26,17 @@ func HandleConnection(port Port, msg string){
     }
     if n != len(data) {
         log.Panic("Could not write all data")
+    }
+}
+
+func WhatchStatus(p *Port, c *gin.Context){
+    for {
+        if p.Connection != nil {
+            c.JSON(200, gin.H{
+                "port": p.Number,
+            })
+            log.Println("status change")
+            return
+        }
     }
 }

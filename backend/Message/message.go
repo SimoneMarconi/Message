@@ -15,9 +15,6 @@ type Msg struct{
     Payload string `json:"payload"`
 }
 
-type CloseMsg struct{
-    Port int `json:"port"`
-}
 
 type contextKey string
 
@@ -38,6 +35,7 @@ func main(){
     router.POST("/message", sendMessage)
     router.GET(("/port"), getPorts)
     router.POST("/port", closePort)
+    router.POST("/status", getStatus)
 
     router.Run(fmt.Sprintf("localhost:%d", 4200))
 }
@@ -56,24 +54,23 @@ func sendMessage(c *gin.Context){
             log.Println("Could not handle context, err: ")
         }
     }
-    portChannel := make(chan handlers.Port)
+    portChannel := make(chan *handlers.Port)
     port, err := table.Get(m.Port)
     //TODO: add required initial init message
     if err != nil {
-        go handlers.OpenPort(m.Port, portChannel)
+        go handlers.OpenPort(m.Port, portChannel, c)
         log.Println("waiting for a Client to connect")
         port = <- portChannel
         table.Add(port)
-        c.JSON(200, gin.H{
-            "port": port.Number,
-            "status": "success",
-        })
     }
     log.Println(port)
     go handlers.HandleConnection(port, m.Payload)
 }
 
 func closePort(c *gin.Context){
+    type CloseMsg struct{
+        Port int `json:"port"`
+    }
     table := make(handlers.PortTable)
     var Cmsg CloseMsg
     if found := c.Request.Context().Value(contextKey("portTable")); found != nil {
@@ -135,4 +132,35 @@ func getPorts(c *gin.Context){
         Ports: table.GetAllNumbers(),
     }
     c.JSON(200, ports)
+}
+
+func getStatus(c *gin.Context){
+    type request struct {
+        Port int `json:"port"`
+    }
+    var req request
+    var table handlers.PortTable
+    if found := c.Request.Context().Value(contextKey("portTable")); found != nil {
+        if t, ok := found.(handlers.PortTable); ok {
+            table = t
+        } else {
+            log.Println("Could not handle context, err: ")
+        }
+    }
+    c.BindJSON(&req)
+    port, err := table.Get(req.Port)
+    if err != nil{
+        c.JSON(500, gin.H{
+            "message": err,
+        })
+    }
+    // go handlers.WhatchStatus(port, c)
+    //fix this status bug
+    for{
+        if port.Connection != nil {
+            c.JSON(200, gin.H{
+                "status": "success",
+            })
+        }
+    }
 }

@@ -4,9 +4,9 @@ import (
 	"errors"
 )
 
-type PortTable map[int]Port
+type PortTable map[int]*Port
 
-func (t PortTable) Add(p Port) (PortTable, error){
+func (t PortTable) Add(p *Port) (PortTable, error){
     if _, ok := t[p.Number]; ok == true{
         return nil, errors.New("Port already opened")
     }
@@ -22,15 +22,15 @@ func (t PortTable) Remove(port int) (PortTable, error) {
     return nil, errors.New("Port not found for deletion")
 }
 
-func (t PortTable) Get(port int) (Port, error){
+func (t PortTable) Get(port int) (*Port, error){
     if val, ok := t[port]; ok == true {
         return val, nil
     }
-    return Port{}, errors.New("Port not found")
+    return &Port{}, errors.New("Port not found")
 }
 
-func (t PortTable) GetAll() []Port{
-    var res []Port
+func (t PortTable) GetAll() []*Port{
+    var res []*Port
     for _, val := range t{
         res = append(res, val)
     }

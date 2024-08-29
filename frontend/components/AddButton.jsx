@@ -9,16 +9,32 @@ const dummy = {
 }
 
 function AddButton(props) {
-    function handleClick(){
-        props.list([2001])
-        axios.post("http://localhost:4200/message", dummy).then((res) => {
-                console.log("message: ", res)
-            })
+
+    const port = 2001
+    const newList = props.list.concat(port)
+
+    function getStatus(){
         axios.post("http://localhost:4200/status", {
-            "port" : 2001,
+            "port" : port,
         }).then((res) => {
                 console.log("status: ", res)
-                props.status([2001])
+                let stat = res.data.status
+                if (stat === "success"){
+                    console.log("props.list: ", props.list)
+                    props.status(newList)
+                }else{
+                    setTimeout(getStatus, 1000);
+                    
+                }
+            })
+    }
+
+    function handleClick(){
+        console.log("setting new list")
+        props.setList(newList)
+        axios.post("http://localhost:4200/message", dummy).then((res) => {
+                console.log("message: ", res)
+                setTimeout(getStatus, 1000)
             })
     }
   return (

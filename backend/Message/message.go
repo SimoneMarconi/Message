@@ -156,11 +156,13 @@ func getStatus(c *gin.Context){
     }
     // go handlers.WhatchStatus(port, c)
     //fix this status bug
-    for{
-        if port.Connection != nil {
-            c.JSON(200, gin.H{
-                "status": "success",
-            })
-        }
+    if port.Connection != nil {
+        c.JSON(200, gin.H{
+            "status": "success",
+        })
+    } else{
+        c.JSON(200, gin.H{
+            "status": "fail",
+        })
     }
 }

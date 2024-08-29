@@ -25,14 +25,13 @@ function App() {
 	const list = portList.map((ele, index) => 
 		<ul key={index}><Card port={ele} status={status}/></ul>
 	)
-    console.log(list)
 	return (
 		<div className="app-container">
 			<Navbar />
 			<div className="app-main">
 				{list}
 			</div>
-			<AddButton list={setList} status={setStatus}/>
+			<AddButton list={portList} setList={setList} status={setStatus}/>
 		</div>
 	);
 }

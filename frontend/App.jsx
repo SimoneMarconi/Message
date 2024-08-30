@@ -6,11 +6,8 @@ import Card from "./components/Card";
 import "./styles/App.css"
 import axios from "axios";
 
-//const portList = [2001,2002]
-
 function App() {
     const [portList, setList] = useState([])
-    //const [niente, setList] = useState([])
     const [status, setStatus] = useState([])
 
     useEffect(()=>{
@@ -31,7 +28,7 @@ function App() {
 			<div className="app-main">
 				{list}
 			</div>
-			<AddButton list={portList} setList={setList} status={setStatus}/>
+			<AddButton list={portList} setList={setList} status={status} setStatus={setStatus}/>
 		</div>
 	);
 }

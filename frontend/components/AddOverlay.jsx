@@ -1,6 +1,8 @@
 import React from "react";
 import AddForm from "./AddForm";
 
+import "../styles/AddOverlay.css"
+
 function AddOverlay(props){
 
     const onClose = props.onClose
@@ -12,10 +14,10 @@ function AddOverlay(props){
 
     return(
         <>
-            <div className="overlay">
-                <div className="overlay-controls">
+            <div className="add-overlay">
+                <div className="add-overlay-controls">
                     Open port
-                    <button className="overlay-close" type="button" onClick={onClose}>✖</button>
+                    <button className="add-overlay-close" type="button" onClick={onClose}>✖</button>
                 </div>
                 <div>
                     <AddForm onClose={onClose} setNewPort={setNewPort} getStatus={getStatus} list={list} setList={setList}/>

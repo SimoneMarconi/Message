@@ -20,7 +20,7 @@ function App() {
     }, [])
 
 	const list = portList.map((ele, index) => 
-		<ul key={index}><Card port={ele} status={status}/></ul>
+		<ul key={index}><Card port={ele} list={portList} setList={setList} status={status} setStatus={setStatus}/></ul>
 	)
 	return (
 		<div className="app-container">

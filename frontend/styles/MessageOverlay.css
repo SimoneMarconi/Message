@@ -1,4 +1,4 @@
-.overlay{
+.mess-overlay{
     background-color: white;
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -8,7 +8,7 @@
     transition: all 0.3s ease 0s;
 }
 
-.overlay-controls{
+.mess-overlay-controls{
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -16,7 +16,7 @@
     font-weight: bold;
 }
 
-.overlay-close{
+.mess-overlay-close{
     position: right;
     background-color: transparent;
     border: none;

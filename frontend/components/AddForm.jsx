@@ -1,6 +1,8 @@
 import axios from "axios";
 import React, { useState } from "react";
 
+import "../styles/AddForm.css"
+
 function AddForm(props){
 
     console.log("loading AddForm")
@@ -53,9 +55,9 @@ function AddForm(props){
 
     return(
         <form onSubmit={handleSubmit}>
-            <label>
-                Port: 
-                <input type="text" name="port" onChange={handleChange} required/>
+            <label className="add-label">
+                Port Number
+                <input className="add-input" type="text" name="port" onChange={handleChange} required/>
             </label>
         </form>
     )

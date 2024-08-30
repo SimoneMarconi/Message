@@ -1,6 +1,6 @@
 import React from "react";
 
-import "../styles/Overlay.css"
+import "../styles/MessageOverlay.css"
 import MessageForm from "./MessageForm";
 
 function MessageOverlay(props){
@@ -12,10 +12,10 @@ function MessageOverlay(props){
     <>
             {
                 show ? (
-                    <div className="overlay">
-                        <div className="overlay-controls">
+                    <div className="mess-overlay">
+                        <div className="mess-overlay-controls">
                             localhost:{port}
-                            <button className="overlay-close" type="button" onClick={onClose}>✖</button>
+                            <button className="mess-overlay-close" type="button" onClick={onClose}>✖</button>
                         </div>
                         <div>
                             <MessageForm port={port} close={onClose}/>

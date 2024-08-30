@@ -1,6 +1,8 @@
 import axios from "axios";
 import React, { useState } from "react";
 
+import "../styles/MessageForm.css"
+
 function MessageForm(props) {
     const port = props.port
     const initialFormState = {
@@ -33,9 +35,9 @@ function MessageForm(props) {
 
     return(
         <form onSubmit={handleSubmit}>
-            <label>
-                Message:
-                <input type="text" name="payload" onChange={handleChange} required />
+            <label className="message-label">
+                Message
+                <input className="message-input" type="text" name="payload" onChange={handleChange} required />
             </label>
             <button type="submit">Send</button>
         </form>

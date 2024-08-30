@@ -1,2 +1,2 @@
 frontend/node_modules
-backend/Message/tcpClient
+backend/Message/build/*

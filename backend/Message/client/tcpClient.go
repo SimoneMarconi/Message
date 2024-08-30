@@ -18,18 +18,18 @@ func main() {
     if err != nil {
         log.Panic(err)
     }
-    // var msg []byte
-    // msg := make([]byte, 256)
+    detect := 0
     for {
         reader := bufio.NewReader(conn)
         line, _, _ := reader.ReadLine()
+        if string(line) == ""{
+            detect++
+        }else{
+            detect = 0
+        }
+        if detect == 5 {
+            return
+        }
         log.Println(string(line))
-        // n, _:= conn.Read(msg)
-        // if err != nil {
-        //     log.Panic(err)
-        // }
-        // if n != 0 {
-        //     log.Println(string(msg))
-        // }
     }
 }

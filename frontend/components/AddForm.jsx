@@ -25,13 +25,19 @@ function AddForm(props){
 
     const handleSubmit = (event) => {
         event.preventDefault()
+        const port = parseInt(formData.port)
+
+        if (list.includes(port)){
+            console.log("Port already openned")
+            return
+        }
+
         console.log("formData: ", formData)
         const body = {
-            "port" : parseInt(formData.port),
+            "port" : port,
             "payload": "Init\n",
         }
         console.log(body)
-        const port = parseInt(formData.port)
         
         if (list.includes(port)){
             onClose()

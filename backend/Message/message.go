@@ -35,6 +35,7 @@ func main(){
     router.POST("/message", sendMessage)
     router.GET(("/port"), getPorts)
     router.POST("/port", closePort)
+    router.GET("/status", getAllStatus)
     router.POST("/status", getStatus)
 
     router.Run(fmt.Sprintf("localhost:%d", 4200))
@@ -165,4 +166,29 @@ func getStatus(c *gin.Context){
             "status": "fail",
         })
     }
+}
+
+func getAllStatus(c *gin.Context){
+    type portsResponse struct{
+        Ports []int `json:"ports"`
+    }
+    buffer := []int{}
+    var table handlers.PortTable
+    if found := c.Request.Context().Value(contextKey("portTable")); found != nil {
+        if t, ok := found.(handlers.PortTable); ok {
+            table = t
+        } else {
+            log.Println("Could not handle context, err: ")
+        }
+    }
+    for key, val := range table{
+        if val != nil{
+            buffer = append(buffer, key)
+        }
+    }
+    data := portsResponse{
+        Ports: buffer,
+    }
+    log.Println(data)
+    c.JSON(200, data)
 }

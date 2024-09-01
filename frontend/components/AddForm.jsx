@@ -33,6 +33,10 @@ function AddForm(props){
         }
 
         console.log("formData: ", formData)
+        if (Number.isInteger(formData) === false){
+            console.log("Port value not valid")
+            return
+        }
         const body = {
             "port" : port,
             "payload": "Init\n",

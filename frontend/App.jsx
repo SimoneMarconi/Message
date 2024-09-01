@@ -13,6 +13,8 @@ function App() {
     const [popup, setPopup] = useState(false)
     const [portClose, setPortClose] = useState(0)
 
+    console.log("rendering status:", status)
+
     useEffect(()=>{
         axios
             .get("http://localhost:4200/port")
@@ -20,10 +22,17 @@ function App() {
                 setList(res.data.ports)
                 console.log(res)
             })
+        axios
+            .get("http://localhost:4200/status")
+            .then((res) => {
+                console.log(res.status)
+                setStatus(res.data.ports)
+                console.log("http first status:", res.data.ports)
+            })
     }, [])
 
-	const list = portList.map((ele, index) => 
-		<ul key={index}><Card port={ele} list={portList} setList={setList} status={status} setStatus={setStatus} setPopup={setPopup} setPortClose={setPortClose}/></ul>
+	const list = portList.map((ele, index) =>
+        <ul key={index}><Card port={ele} list={portList} setList={setList} status={status} setStatus={setStatus} setPopup={setPopup} setPortClose={setPortClose}/></ul>
 	)
 	return (
 		<div className="app-container">

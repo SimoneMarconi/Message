@@ -13,7 +13,6 @@ function App() {
     const [popup, setPopup] = useState(false)
     const [portClose, setPortClose] = useState(0)
 
-    console.log("rendering status:", status)
 
     useEffect(()=>{
         axios
@@ -27,7 +26,6 @@ function App() {
             .then((res) => {
                 console.log(res.status)
                 setStatus(res.data.ports)
-                console.log("http first status:", res.data.ports)
             })
     }, [])
 

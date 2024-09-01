@@ -14,10 +14,10 @@ func main() {
     }
     address := "localhost:" + args[1]
     conn, err := net.Dial("tcp", address)
-    defer conn.Close()
     if err != nil {
-        log.Panic(err)
+        log.Fatal("The port is not open")
     }
+    defer conn.Close()
     detect := 0
     for {
         reader := bufio.NewReader(conn)

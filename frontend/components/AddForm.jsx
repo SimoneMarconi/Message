@@ -5,7 +5,6 @@ import "../styles/AddForm.css"
 
 function AddForm(props){
 
-    console.log("loading AddForm")
 
     const setNewPort= props.setNewPort
     const getStatus = props.getStatus
@@ -23,6 +22,7 @@ function AddForm(props){
         }))
     }
 
+    //can add error handling here
     const handleSubmit = (event) => {
         event.preventDefault()
         const port = parseInt(formData.port)
@@ -33,7 +33,11 @@ function AddForm(props){
         }
 
         console.log("formData: ", formData)
-        if (Number.isInteger(formData) === false){
+        if (Number.isNaN(port)){
+            console.log("Port value given is not a number")
+            return
+        }
+        if (port <= 1024 || port >= 65535){
             console.log("Port value not valid")
             return
         }

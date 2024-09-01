@@ -13,19 +13,16 @@ function AddButton(props) {
     const setList = props.setList
     const [add, setAdd] = useState(false)
     const [newPort, setNewPort] = useState(0)
-    console.log("current newPort", newPort)
+
 
     function getStatus(port){
-        console.log("port sending:", port)
         axios.post("http://localhost:4200/status", {
             "port" : port,
         }).then((res) => {
                 console.log("status: ", res)
                 let stat = res.data.status
                 if (stat === "success"){
-                    console.log("props.list: ", props.list)
                     setStatus(status.concat(port))
-                    console.log("status", status)
                 }else{
                     setTimeout(function(){
                         getStatus(parseInt(port))

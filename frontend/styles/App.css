@@ -1,13 +1,15 @@
 .app-container {
-  display: flex;
-  flex-direction: column;
-  background-color: #d9eaff;
-  height: 100%;
-  padding-top: 20px;
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    background-color: #d9eaff;
+    height: 100%;
+    width: 100%;
+    padding-top: 5px;
 }
 
 .app-main {
-  position: relative;
-  width: 90%;
-  max-width: 500px;
+    position: relative;
+    width: 90%;
+    max-width: 500px;
 }

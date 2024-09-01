@@ -12,6 +12,8 @@ function Card(props){
     const setList = props.setList
     const setStatus = props.setStatus
     const port = props.port
+    const setPopup = props.setPopup
+    const setPortClose = props.setPortClose
     let status = props.status.includes(port) ? "Done" : "Pending"
 
     function closeCard(){
@@ -33,6 +35,11 @@ function Card(props){
             })
     }
 
+    function openPopup(){
+        setPopup(true)
+        setPortClose(port)
+    }
+
     const toggleMsg = ()=>setMsg(!msg)
     
     return(
@@ -42,7 +49,7 @@ function Card(props){
                 <div className="card">
                     <div className="card-header">
                         localhost:{port}
-                        <button className="card-close" onClick={closeCard}>✖</button>
+                        <button className="card-close" onClick={openPopup}>✖</button>
                     </div>
                     <div>
                         <span className="card-status">status:</span> <span className="card-done">{status}</span>

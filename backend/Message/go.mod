@@ -1,4 +1,4 @@
-module message
+module github.com/SimoneMarconi/Message 
 
 go 1.22.2
 

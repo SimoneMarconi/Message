@@ -37,6 +37,7 @@ func main(){
     router.POST("/port", closePort)
     router.GET("/status", getAllStatus)
     router.POST("/status", getStatus)
+    router.GET("/quit", closeAllPorts)
 
     router.Run(fmt.Sprintf("localhost:%d", 4200))
 }
@@ -105,6 +106,29 @@ func closePort(c *gin.Context){
     table.Remove(Cmsg.Port)
     c.JSON(200, gin.H{
         "port": Cmsg.Port,
+        "status": "success",
+    })
+}
+
+func closeAllPorts(c *gin.Context){
+    var table handlers.PortTable
+    if found := c.Request.Context().Value(contextKey("portTable")); found != nil {
+        if t, ok := found.(handlers.PortTable); ok {
+            table = t
+        } else {
+            log.Println("Could not handle context, err: ")
+        }
+    }
+    for _, val := range table{
+        err := val.Connection.Close()
+        if err != nil{
+            c.JSON(500, gin.H{
+                "status": "fail",
+            })
+            return
+        }
+    }
+    c.JSON(200, gin.H{
         "status": "success",
     })
 }

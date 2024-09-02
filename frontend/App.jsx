@@ -34,7 +34,7 @@ function App() {
 	)
 	return (
 		<div className="app-container">
-			<Navbar />
+			<Navbar setList={setList} setStatus={setStatus}/>
             <PopUp show={popup} setShow={setPopup} port={portClose} setPort={setPortClose} list={portList} setList={setList} status={status} setStatus={setStatus}/>
 			<div className="app-main">
 				{list}

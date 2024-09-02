@@ -1,39 +1,40 @@
 .navbar {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  background-color: #00a0ff;
-  padding: 10px 20px;
-  width: 100%;
-  box-sizing: border-box;
-  border-radius: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #00a0ff;
+    padding: 10px 20px;
+    margin-bottom: 20px;
+    width: 100%;
+    box-sizing: border-box;
+    border-radius: 10px;
 }
 
 .nav-button {
-  background-color: #1FB4FF;
-  border: none;
-  border-radius: 10px;
-  font-size: 16px;
-  color: black;
-  cursor: pointer;
-  transition: all .35s ease;
+    background-color: #1FB4FF;
+    border: none;
+    border-radius: 10px;
+    font-size: 16px;
+    color: black;
+    cursor: pointer;
+    transition: all .35s ease;
 }
 
 .nav-button:hover {
-background: #59c8ff;
-letter-spacing: 1px;
--webkit-box-shadow: 0px 5px 40px -10px rgba(0,0,0,0.57);
--moz-box-shadow: 0px 5px 40px -10px rgba(0,0,0,0.57);
-box-shadow: 5px 40px -10px rgba(0,0,0,0.57);
-transition: all 0.4s ease 0s;
+    background: #59c8ff;
+    letter-spacing: 1px;
+    -webkit-box-shadow: 0px 5px 40px -10px rgba(0,0,0,0.57);
+    -moz-box-shadow: 0px 5px 40px -10px rgba(0,0,0,0.57);
+    box-shadow: 5px 40px -10px rgba(0,0,0,0.57);
+    transition: all 0.4s ease 0s;
 }
 
 .nav-off{
-  position: left;
-  background-color: red;
-  border: solid;
-  border-radius: 20px;
-  font-size: 20px;
-  color: black;
-  cursor: pointer;
+    position: left;
+    background-color: red;
+    border: solid;
+    border-radius: 20px;
+    font-size: 20px;
+    color: black;
+    cursor: pointer;
 }

@@ -23,7 +23,6 @@ function Navbar(props){
     return(
         <div className="navbar">
             <button className="nav-button">Home</button>
-            <button className="nav-button">Info</button>
             <button className="nav-off" onClick={quit}>✖</button>
         </div>
     )
